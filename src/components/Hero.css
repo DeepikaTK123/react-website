@@ -1,0 +1,26 @@
+.hero {
+    height: 90vh;
+    background-image: url('/Users/deepika/advanced-technologies/src/assets/DALL·E 2024-10-06 10.50.03 - A sleek, modern technology-themed background image featuring abstract patterns, futuristic elements, and clean lines. The colors should be a combinati.webp'); /* Add your image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
