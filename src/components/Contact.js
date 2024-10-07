@@ -1,6 +1,6 @@
 import React from 'react';
 import './Contact.css';
-import contactImage from '../assets/contact-images.jpg'; // Replace with your actual image
+import contactImage from '../assets/contact-images.jpg'; 
 
 const Contact = () => {
   return (
@@ -10,7 +10,7 @@ const Contact = () => {
         <h2>Contact Us</h2>
         <p>We'd love to hear from you! Reach out to us for any queries or collaboration opportunities.</p>
         <div className="contact-details">
-          <p><strong>Email:</strong> info@advancedtech.com</p>
+          <p><strong>Email:</strong> info@advancedtech.co.in</p>
           <p><strong>Phone:</strong> +91-9945631865</p>
         </div>
       </div>
