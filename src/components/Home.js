@@ -1,16 +1,39 @@
 import React from 'react';
 import './Home.css';
-import homeImage from '../assets/home-image.jpg'; // Replace with your actual image
+import homeImage from '../assets/home_new.jpg';
 
 const Home = () => {
+  const welcomeText = "Welcome to Advanced Technologies";
+  const subText = "Innovating the future with cutting-edge engineering and IT solutions.";
+
   return (
-    <section className="home">
-      <img src={homeImage} alt="Home" className="home-image" />
+    <div className="home">
+      <div className="home-image" style={{ backgroundImage: `url(${homeImage})` }}></div>
       <div className="home-content">
-        <h1>Welcome to Advanced Technologies</h1>
-        <p>Innovating the future with cutting-edge engineering and IT solutions.</p>
+        <div className="animated-welcome">
+          {welcomeText.split("").map((char, index) => (
+            <span
+              key={index}
+              className={`animated-letter bold-text ${char === " " ? "space" : ""}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {char}
+            </span>
+          ))}
+        </div>
+        <div className="animated-subtext">
+          {subText.split("").map((char, index) => (
+            <span
+              key={index}
+              className={`animated-letter normal-text ${char === " " ? "space" : ""}`}
+              style={{ animationDelay: `${(index + welcomeText.length) * 0.05}s` }}
+            >
+              {char}
+            </span>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

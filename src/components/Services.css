@@ -1,57 +1,115 @@
+/* Updated Services.css */
+
 .services {
-    padding: 40px 20px;
-  }
-  
-  .services-header {
     text-align: center;
-    margin-bottom: 40px;
+    padding: 40px 20px;
+    position: relative;
   }
   
   .services-image {
     width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
-    margin-bottom: 20px;
+    height: 50vh; /* Adjust the height as needed */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional: for a parallax effect */
+    margin-bottom: 30px;
   }
   
-  .services-header h2 {
-    font-size: 32px;
+  
+  h2 {
+    font-size: 2.5em;
+    color: black;
     margin-bottom: 10px;
   }
   
-  .services-header p {
-    font-size: 18px;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.5;
+  .services-intro {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+    padding: 0 10%;
   }
   
-  .services-grid {
+  .services-columns {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    padding: 20px;
+    position: relative;
   }
   
-  .service-section {
-    background-color: #f9f9f9;
+  .service-box {
+    background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    opacity: 0; /* Initially hidden for animation */
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    position: relative;
   }
   
-  .service-section:hover {
-    transform: translateY(-5px);
+  /* Animation classes */
+  .animate-in {
+    opacity: 1; /* Make visible when animation starts */
   }
   
-  .service-section h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
+  /* Different directions for animations */
+  .from-left {
+    animation: slideInFromLeft 0.6s ease forwards;
   }
   
-  .service-section p {
-    font-size: 16px;
-    line-height: 1.5;
+  .from-right {
+    animation: slideInFromRight 0.6s ease forwards;
+  }
+  
+  .from-bottom {
+    animation: slideInFromBottom 0.6s ease forwards;
+  }
+  
+  .from-top {
+    animation: slideInFromTop 0.6s ease forwards;
+  }
+  
+  /* Keyframes for animations */
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInFromBottom {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .services-columns {
+      grid-template-columns: 1fr;
+    }
   }
   
