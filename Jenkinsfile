@@ -10,7 +10,10 @@ pipeline {
 
         stage('Check files') {
             steps {
-                sh 'ls'
+                sh 'which node
+                 which npm
+                    node -v
+                npm -v'
                 // or use: sh 'yarn install'
             }
         }
