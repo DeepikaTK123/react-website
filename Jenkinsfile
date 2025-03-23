@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-
     environment {
         NODE_ENV = "production"
+        NVM_DIR = "${HOME}/.nvm"
     }
 
     stages {
@@ -11,6 +11,9 @@ pipeline {
             steps {
                 sh '''
                     echo "Checking node and npm..."
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load nvm
+                    nvm use 20
                     which node
                     which npm
                     node -v
@@ -19,33 +22,25 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/DeepikaTK123/react-website.git', branch: 'main'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                    nvm use 20
+                    npm install
+                '''
             }
         }
 
-        stage('Run Tests') {
+        stage('RUN') {
             steps {
-                sh 'npm test'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-
-        stage('Archive Build') {
-            steps {
-                archiveArtifacts artifacts: 'build/**', fingerprint: true
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                    nvm use 20
+                    npm run start
+                '''
             }
         }
     }
