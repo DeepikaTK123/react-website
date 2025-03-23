@@ -10,11 +10,13 @@ pipeline {
 
         stage('Check files') {
             steps {
-                sh '''which node
-                 which npm
+                sh '''
+                    echo "Checking node and npm..."
+                    which node
+                    which npm
                     node -v
-                npm -v'''
-                // or use: sh 'yarn install'
+                    npm -v
+                '''
             }
         }
 
