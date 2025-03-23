@@ -1,14 +1,16 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs "node16"  // match the name you used above
+    }
+
     environment {
-        NODE_ENV = 'production'
+        NODE_ENV = "production"
     }
 
     stages {
-
-
-        stage('Check files') {
+        stage('Check Node & npm') {
             steps {
                 sh '''
                     echo "Checking node and npm..."
@@ -20,27 +22,35 @@ pipeline {
             }
         }
 
-        
-        
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/DeepikaTK123/react-website.git', branch: 'main'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
-                // or use: sh 'yarn install'
             }
         }
 
-        
-        stage('Start') {
+        stage('Run Tests') {
             steps {
-                sh 'npm run start'
-                // or use: sh 'yarn build'
+                sh 'npm test'
             }
         }
 
-        
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
 
-        
+        stage('Archive Build') {
+            steps {
+                archiveArtifacts artifacts: 'build/**', fingerprint: true
+            }
+        }
     }
 
     post {
