@@ -6,6 +6,16 @@ pipeline {
     }
 
     stages {
+
+
+        stage('Check files') {
+            steps {
+                sh 'ls'
+                // or use: sh 'yarn install'
+            }
+        }
+
+        
         
 
         stage('Install Dependencies') {
