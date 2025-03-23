@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs "node16"  // match the name you used above
+        nodejs "node20"  // match the name you used above
     }
 
     environment {
