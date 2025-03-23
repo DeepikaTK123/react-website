@@ -12,12 +12,17 @@ pipeline {
                 sh '''
                     echo "Checking node and npm..."
                     export NVM_DIR="$HOME/.nvm"
-                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load nvm
-                    nvm use 20
-                    which node
-                    which npm
-                    node -v
-                    npm -v
+                    if [ -s "$NVM_DIR/nvm.sh" ]; then
+                      . "$NVM_DIR/nvm.sh"
+                      nvm use 20
+                      which node
+                      which npm
+                      node -v
+                      npm -v
+                    else
+                      echo "NVM not found"
+                      exit 1
+                    fi
                 '''
             }
         }
@@ -26,9 +31,14 @@ pipeline {
             steps {
                 sh '''
                     export NVM_DIR="$HOME/.nvm"
-                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-                    nvm use 20
-                    npm install
+                    if [ -s "$NVM_DIR/nvm.sh" ]; then
+                      . "$NVM_DIR/nvm.sh"
+                      nvm use 20
+                      npm install
+                    else
+                      echo "NVM not found"
+                      exit 1
+                    fi
                 '''
             }
         }
@@ -37,9 +47,14 @@ pipeline {
             steps {
                 sh '''
                     export NVM_DIR="$HOME/.nvm"
-                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-                    nvm use 20
-                    npm run start
+                    if [ -s "$NVM_DIR/nvm.sh" ]; then
+                      . "$NVM_DIR/nvm.sh"
+                      nvm use 20
+                      npm run start
+                    else
+                      echo "NVM not found"
+                      exit 1
+                    fi
                 '''
             }
         }
